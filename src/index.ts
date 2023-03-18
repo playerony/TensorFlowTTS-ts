@@ -1,10 +1,10 @@
-import { getGraphModel } from './core/getGraphModelByName';
+import { getGraphModelByName } from './core/getGraphModelByName';
 
 const loadModels = async () => {
-  const vocoder = await getGraphModel('vocoder');
-  const text2mel = await getGraphModel('text2mel');
+  const vocoderModel = await getGraphModelByName('vocoder');
+  const text2melModel = await getGraphModelByName('text2mel');
 
-  console.log(text2mel, vocoder);
+  console.log(text2melModel, vocoderModel);
 };
 
 loadModels();

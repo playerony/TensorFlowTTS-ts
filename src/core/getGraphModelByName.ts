@@ -7,7 +7,7 @@ const getIndexedDBKey = (name: string) => `indexeddb://${name}.model.json`;
 const getGithubRawLink = (modelName: string) =>
   `https://raw.githubusercontent.com/playerony/TensorFlowTTS-ts/main/models/${modelName}/model.json`;
 
-export const getGraphModel = async (name: string) => {
+export const getGraphModelByName = async (name: string) => {
   const indexeddbKey = getIndexedDBKey(name);
 
   try {
