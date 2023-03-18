@@ -1,13 +1,8 @@
-import * as tf from '@tensorflow/tfjs';
-
-const loadGraphModel = async (name: string) =>
-  tf.loadGraphModel(
-    `https://raw.githubusercontent.com/playerony/TensorFlowTTS-ts/main/models/${name}/model.json`,
-  );
+import { getGraphModel } from './core/getGraphModelByName';
 
 const loadModels = async () => {
-  const vocoder = await loadGraphModel('vocoder');
-  const text2mel = await loadGraphModel('text2mel');
+  const vocoder = await getGraphModel('vocoder');
+  const text2mel = await getGraphModel('text2mel');
 
   console.log(text2mel, vocoder);
 };
