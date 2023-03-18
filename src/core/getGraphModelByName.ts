@@ -8,13 +8,13 @@ const getGithubRawLink = (modelName: string) =>
   `https://raw.githubusercontent.com/playerony/TensorFlowTTS-ts/main/models/${modelName}/model.json`;
 
 export const getGraphModelByName = async (name: string) => {
-  const indexeddbKey = getIndexedDBKey(name);
+  const indexedDBKey = getIndexedDBKey(name);
 
   try {
-    return await loadGraphModel(indexeddbKey);
+    return await loadGraphModel(indexedDBKey);
   } catch (error) {
     const model = await loadGraphModel(getGithubRawLink(name));
 
-    return await model.save(indexeddbKey);
+    return await model.save(indexedDBKey);
   }
 };
