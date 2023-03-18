@@ -1,0 +1,20 @@
+{
+  "name": "TensorFlowTTS-ts",
+  "version": "1.0.0",
+  "description": "TensorflowTTS in typescript",
+  "repository": "git@github.com:playerony/TensorFlowTTS-ts.git",
+  "author": "playerony <pawel.wojtasinski.1995@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "format": "yarn prettier --write",
+    "format:check": "yarn prettier --check",
+    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json)\"",
+    "build": "tsc src/index.ts --target esnext --outfile build/index.js"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "prettier": "^2.8.4",
+    "typescript": "^5.0.2"
+  }
+}
