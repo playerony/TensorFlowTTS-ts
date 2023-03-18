@@ -20937,14 +20937,14 @@
   "weightsManifest": [
     {
       "paths": [
-        "group1-shard1of8.bin",
-        "group1-shard2of8.bin",
-        "group1-shard3of8.bin",
-        "group1-shard4of8.bin",
-        "group1-shard5of8.bin",
-        "group1-shard6of8.bin",
-        "group1-shard7of8.bin",
-        "group1-shard8of8.bin"
+        "group-shard1of8.bin",
+        "group-shard2of8.bin",
+        "group-shard3of8.bin",
+        "group-shard4of8.bin",
+        "group-shard5of8.bin",
+        "group-shard6of8.bin",
+        "group-shard7of8.bin",
+        "group-shard8of8.bin"
       ],
       "weights": [
         {
