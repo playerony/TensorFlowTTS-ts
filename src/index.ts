@@ -1,4 +1,5 @@
 import { playAudio } from './core/playAudio';
+import { cleanUpStringInput } from './core/cleanUpStringInput';
 import { getGraphModelByName } from './core/getGraphModelByName';
 import { generateVocoderOutputInstance } from './core/generateVocoderOutput';
 
