@@ -7,14 +7,15 @@ const getIndexedDBKey = (name: string) => `indexeddb://${name}.model.json`;
 const getGithubRawLink = (modelName: string) =>
   `https://raw.githubusercontent.com/playerony/TensorFlowTTS-ts/main/models/${modelName}/model.json`;
 
-export const getGraphModelByName = async (name: string) => {
+export const getGraphModelByName = async (name: string): Promise<tf.GraphModel> => {
   const indexedDBKey = getIndexedDBKey(name);
 
   try {
     return await loadGraphModel(indexedDBKey);
   } catch (error) {
     const model = await loadGraphModel(getGithubRawLink(name));
+    await model.save(indexedDBKey);
 
-    return await model.save(indexedDBKey);
+    return model;
   }
 };
