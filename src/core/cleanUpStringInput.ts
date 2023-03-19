@@ -17,8 +17,8 @@ const replaceAbbreviationsWithFullNames = (input: string) =>
 const pipe = [
   stringToLowerCase,
   replaceMultipleSpacesWithSingleSpace,
-  replaceAbbreviationsWithFullNames,
   replaceWhitespacesWithSingleSpace,
+  replaceAbbreviationsWithFullNames,
 ];
 
 export const cleanUpStringInput = (input: string | null | undefined) => {
