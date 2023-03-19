@@ -1,5 +1,7 @@
 import { playAudio } from './core/playAudio';
+import { cleanUpStringInput } from './core/cleanUpStringInput';
 import { getGraphModelByName } from './core/getGraphModelByName';
+import { convertStringToSequence } from './core/convertStringToSequence';
 import { generateVocoderOutputInstance } from './core/generateVocoderOutput';
 
 const loadModels = async () => {
@@ -7,14 +9,14 @@ const loadModels = async () => {
   const text2melModel = await getGraphModelByName('text2mel');
   const generateVocoderOutput = generateVocoderOutputInstance(vocoderModel, text2melModel);
 
-  const vocoderOutput = await generateVocoderOutput([
-    46, 57, 11, 46, 56, 11, 60, 52, 55, 48, 46, 51, 44, 2, 148,
-  ]);
+  const parsedInput = cleanUpStringInput('Test input string etc.');
+  const inputSequence = convertStringToSequence(parsedInput);
+  const vocoderOutput = await generateVocoderOutput(inputSequence);
 
   playAudio(vocoderOutput);
 };
 
-const assingOnClickEvent = () => {
+const assignOnClickEvent = () => {
   const buttonElement = document.querySelector('button');
   if (!buttonElement) {
     return;
@@ -23,4 +25,4 @@ const assingOnClickEvent = () => {
   buttonElement.addEventListener('click', loadModels);
 };
 
-window.onload = assingOnClickEvent;
+window.onload = assignOnClickEvent;
