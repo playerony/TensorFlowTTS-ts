@@ -8,11 +8,13 @@ const prepareInputs = (stringAsNumbers: number[]) => ({
   energy_ratios: tf.tensor([1], undefined, 'float32'),
 });
 
+const getFirstArrayElement = <T>(array: T[] | T): T => (Array.isArray(array) ? array[0] : array);
+
 const executeText2MelModel =
   (text2melModel: tf.GraphModel) => async (inputs: ReturnType<typeof prepareInputs>) => {
     const mel = await text2melModel.executeAsync(inputs);
 
-    return Array.isArray(mel) ? mel[0] : mel;
+    return getFirstArrayElement(mel);
   };
 
 export const generateVocoderOutputInstance =
@@ -23,5 +25,5 @@ export const generateVocoderOutputInstance =
 
     const vocoderModelResponse = vocoderModel.execute(mel);
 
-    return Array.isArray(vocoderModelResponse) ? vocoderModelResponse[0] : vocoderModelResponse;
+    return getFirstArrayElement(vocoderModelResponse);
   };
