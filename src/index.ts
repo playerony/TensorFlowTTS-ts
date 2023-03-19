@@ -16,7 +16,7 @@ const loadModels = async () => {
   playAudio(vocoderOutput);
 };
 
-const assingOnClickEvent = () => {
+const assignOnClickEvent = () => {
   const buttonElement = document.querySelector('button');
   if (!buttonElement) {
     return;
@@ -25,4 +25,4 @@ const assingOnClickEvent = () => {
   buttonElement.addEventListener('click', loadModels);
 };
 
-window.onload = assingOnClickEvent;
+window.onload = assignOnClickEvent;
