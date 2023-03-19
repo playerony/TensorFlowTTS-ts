@@ -12,7 +12,7 @@
     "format": "yarn prettier --write",
     "format:check": "yarn prettier --check",
     "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json)\"",
-    "build": "npm run build:clean && npm run build:dist && cp -r public dist"
+    "build": "npm run build:clean && npm run build:dist && cp public/index.html dist && cp public/styles.css dist"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
