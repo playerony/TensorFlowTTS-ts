@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 
-const prepareInputs = (text: number[]) => ({
-  input_ids: tf.tensor([text], undefined, 'int32'),
+const prepareInputs = (stringAsNumbers: number[]) => ({
+  input_ids: tf.tensor([stringAsNumbers], undefined, 'int32'),
   speaker_ids: tf.tensor([0], undefined, 'int32'),
   'speed_ratios:0': tf.tensor([1], undefined, 'float32'),
   f0_ratios: tf.tensor([1], undefined, 'float32'),
