@@ -1,9 +1,5 @@
 import * as tf from '@tensorflow/tfjs';
 
-const convertToInt32Array = (inputArray: Uint8Array): Int32Array => {
-  return new Int32Array(inputArray.buffer);
-};
-
 const convertToFloat32Array = (inputArray: Int32Array): Float32Array => {
   const float32Array = new Float32Array(inputArray.length);
   for (let i = 0; i < inputArray.length; i++) {
@@ -23,7 +19,8 @@ const parseToFloat32Array = (inputArray: Int32Array | Float32Array | Uint8Array)
   }
 
   if (inputArray instanceof Uint8Array) {
-    const int32Array = convertToInt32Array(inputArray);
+    const int32Array = new Int32Array(inputArray.buffer);
+
     return convertToFloat32Array(int32Array);
   }
 
