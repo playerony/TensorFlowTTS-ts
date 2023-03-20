@@ -44,6 +44,7 @@ textarea {
 }
 
 button {
+  width: 100%;
   padding: 10px 15px;
   font-size: 1.2rem;
   border: none;
@@ -94,5 +95,29 @@ button:hover {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  main {
+    width: 90%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  button {
+    font-size: 1rem;
+    width: 100%;
   }
 }
