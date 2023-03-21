@@ -10,9 +10,9 @@
     "build:clean": "rimraf dist",
     "start": "ts-node src/index.ts",
     "format": "yarn prettier --write",
+    "build": "bash ./scripts/build.sh",
     "format:check": "yarn prettier --check",
-    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json)\"",
-    "build": "npm run build:clean && npm run build:dist && cp public/index.html dist && cp public/styles.css dist"
+    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json)\""
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
