@@ -14,11 +14,24 @@ const replaceWhitespacesWithSingleSpace = (input: string) => input.replace(/[\t\
 const replaceAbbreviationsWithFullNames = (input: string) =>
   input.replace(abbreviationsMatchPattern, (match) => abbreviations[match] || match);
 
+const replaceNumberCommasAndDotsWithEmptyString = (input: string) =>
+  input.replace(/(?<=\d)[,.]|[,.](?=\d)/g, '');
+
+const replaceAllNumberDollarSignsWithText = (input: string) =>
+  input.replace(/\$?([\d,]+(?:\.\d+)?)(?:\$)?/g, (_, amount) => {
+    const parsedAmount = Number(amount);
+    const suffix = parsedAmount === 1 ? 'dollar' : 'dollars';
+
+    return `${parsedAmount.toLocaleString()} ${suffix}`;
+  });
+
 const pipe = [
   stringToLowerCase,
   replaceMultipleSpacesWithSingleSpace,
   replaceWhitespacesWithSingleSpace,
   replaceAbbreviationsWithFullNames,
+  replaceNumberCommasAndDotsWithEmptyString,
+  replaceAllNumberDollarSignsWithText,
 ];
 
 export const cleanUpStringInput = (input: string | null | undefined) => {

@@ -69,6 +69,8 @@ const assignOnClickEventToButton = (vocoderModel: tf.GraphModel, text2melModel: 
 };
 
 const onLoad = async () => {
+  tf.enableProdMode();
+
   const buttonElement = getButtonElement();
   toggleButtonLoadingState(buttonElement, true);
 
