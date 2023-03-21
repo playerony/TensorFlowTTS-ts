@@ -8,6 +8,7 @@
   "scripts": {
     "build:dist": "rollup -c",
     "build:clean": "rimraf dist",
+    "open": "open dist/index.html",
     "start": "ts-node src/index.ts",
     "format": "yarn prettier --write",
     "build": "bash ./scripts/build.sh",
