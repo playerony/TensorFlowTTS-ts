@@ -18,12 +18,12 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@tensorflow/tfjs": "^4.3.0",
     "prettier": "^2.8.4",
     "rimraf": "^4.4.0",
     "rollup": "^3.19.1",
     "rollup-plugin-typescript2": "^0.34.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2",
-    "@tensorflow/tfjs": "^4.3.0"
+    "typescript": "^5.0.2"
   }
 }
