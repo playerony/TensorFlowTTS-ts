@@ -1,6 +1,11 @@
 import { ToWords } from 'to-words';
+import replaceSpecialCharacters from 'replace-special-characters';
 
-import { abbreviations, abbreviationsMatchPattern } from '../constants';
+import {
+  abbreviationsMapper,
+  specialCharactersMapper,
+  abbreviationsMatchPattern,
+} from '../constants';
 
 const toWords = new ToWords();
 
@@ -16,7 +21,14 @@ const replaceMultipleSpacesWithSingleSpace = (input: string) => input.replace(/\
 const replaceWhitespacesWithSingleSpace = (input: string) => input.replace(/[\t\n\r]/g, ' ');
 
 const replaceAbbreviationsWithFullNames = (input: string) =>
-  input.replace(abbreviationsMatchPattern, (match) => abbreviations[match] || match);
+  input.replace(abbreviationsMatchPattern, (match) => abbreviationsMapper[match] || match);
+
+const replaceSpecialCharactersWithFullNames = (input: string) =>
+  Object.keys(specialCharactersMapper).reduce((result, specialCharacter) => {
+    const regex = new RegExp('\\' + specialCharacter, 'g');
+
+    return result.replace(regex, ` ${specialCharactersMapper[specialCharacter]} `);
+  }, input);
 
 const replaceNumberCommasWithEmptyString = (input: string) => input.replace(/(?<=\d),(?=\d)/g, '');
 
@@ -38,14 +50,18 @@ const replaceAllNumberDollarSignsWithText = (input: string) =>
   });
 
 const pipe = [
+  // base cleanup
   stringToLowerCase,
   replaceMultipleSpacesWithSingleSpace,
   replaceWhitespacesWithSingleSpace,
+  replaceSpecialCharacters,
+  // phrasal cleanup
   replaceAbbreviationsWithFullNames,
   replaceNumberCommasWithEmptyString,
   replaceAllNumberDollarSignsWithText,
   replaceNumberDotsWithPoint,
   replaceNumberWithWords,
+  replaceSpecialCharactersWithFullNames,
 ];
 
 export const cleanUpStringInput = (input: string | null | undefined) => {
