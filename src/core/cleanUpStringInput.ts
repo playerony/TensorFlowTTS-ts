@@ -1,4 +1,8 @@
+import { ToWords } from 'to-words';
+
 import { abbreviations, abbreviationsMatchPattern } from '../constants';
+
+const toWords = new ToWords();
 
 const isString = (value: unknown): value is string =>
   typeof value === 'string' || value instanceof String;
@@ -14,11 +18,19 @@ const replaceWhitespacesWithSingleSpace = (input: string) => input.replace(/[\t\
 const replaceAbbreviationsWithFullNames = (input: string) =>
   input.replace(abbreviationsMatchPattern, (match) => abbreviations[match] || match);
 
-const replaceNumberCommasAndDotsWithEmptyString = (input: string) =>
-  input.replace(/(?<=\d)[,.]|[,.](?=\d)/g, '');
+const replaceNumberCommasWithEmptyString = (input: string) => input.replace(/(?<=\d),(?=\d)/g, '');
+
+const replaceNumberDotsWithPoint = (input: string) => input.replace(/(\d+)\.(\d+)/g, '$1 point $2');
+
+const replaceNumberWithWords = (input: string) =>
+  input.replace(/\d+/g, (match) => toWords.convert(Number(match)).toLowerCase());
 
 const replaceAllNumberDollarSignsWithText = (input: string) =>
-  input.replace(/\$?([\d,]+(?:\.\d+)?)(?:\$)?/g, (_, amount) => {
+  input.replace(/\$?([\d,]+(?:\.\d+)?)(?:\$)?/g, (match, amount) => {
+    if (match === amount) {
+      return match;
+    }
+
     const parsedAmount = Number(amount);
     const suffix = parsedAmount === 1 ? 'dollar' : 'dollars';
 
@@ -30,8 +42,10 @@ const pipe = [
   replaceMultipleSpacesWithSingleSpace,
   replaceWhitespacesWithSingleSpace,
   replaceAbbreviationsWithFullNames,
-  replaceNumberCommasAndDotsWithEmptyString,
+  replaceNumberCommasWithEmptyString,
   replaceAllNumberDollarSignsWithText,
+  replaceNumberDotsWithPoint,
+  replaceNumberWithWords,
 ];
 
 export const cleanUpStringInput = (input: string | null | undefined) => {
