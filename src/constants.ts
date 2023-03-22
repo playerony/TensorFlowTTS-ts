@@ -1,4 +1,4 @@
-export const abbreviations: Record<string, string> = {
+export const abbreviationsMapper: Record<string, string> = {
   'am.': 'ante meridiem',
   'pm.': 'post meridiem',
   'apt.': 'apartment',
@@ -125,9 +125,34 @@ export const abbreviations: Record<string, string> = {
 };
 
 export const abbreviationsMatchPattern = new RegExp(
-  `(${Object.keys(abbreviations).join('|').replace(/\./g, '\\.')})`,
+  `(${Object.keys(abbreviationsMapper).join('|').replace(/\./g, '\\.')})`,
   'gi',
 );
+
+export const specialCharactersMapper: Record<string, string> = {
+  '%': 'percentage',
+  '<': 'left arrow',
+  '>': 'right arrow',
+  '&': 'ampersand',
+  '@': 'at',
+  '#': 'hash',
+  '*': 'asterisk',
+  '+': 'plus',
+  '-': 'minus',
+  '/': 'slash',
+  '\\': 'backslash',
+  '|': 'pipe',
+  '^': 'caret',
+  '~': 'tilde',
+  '(': 'left parenthesis',
+  ')': 'right parenthesis',
+  '{': 'left curly bracket',
+  '}': 'right curly bracket',
+  '[': 'left square bracket',
+  ']': 'right square bracket',
+  '=': 'equals',
+  _: 'underscore',
+};
 
 export const symbols = [
   'pad',
